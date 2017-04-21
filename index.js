@@ -98,8 +98,6 @@ var listenerKeys = [
   new RegExp('\\bfood\\b', 'i'),
   new RegExp('\\boh shit\\b', 'i'),
   new RegExp('\\bidk\\b', 'i'),
-  new RegExp('\\bWHO IS THE BEST WRESTLER EVER?\\b', 'i'),
-  new RegExp('\\bWHAT IS TURNIP SOLUTIONS?\\b', 'i'),
   'weed',
   'turnip',
   '1_train',
@@ -244,38 +242,8 @@ function react (bot, message) {
     }
   }
 
-  var invalidUsers = [
-    'U024H2X4H'
-  ]
-
-  var validUsers = [
-    'U09NPAG11',
-    'U08GT2AKC',
-    'U0E5ATAET',
-    'U0B21BV0E',
-    'U09NPMD9D',
-    'U024GG01L',
-    'U054D7BLQ',
-    'U03PUU0ET',
-    'U024GGPQL',
-    'U072XF54H',
-    'U024GG4T9',
-    'U024GG2BS'
-  ]
-
-  if (invalidUsers.indexOf(message.user) !== -1) {
-    return
-  }
-
-  if (validUsers.indexOf(message.user) === -1) {
-    return
-  }
-
   // checks for both phrase and emoji
   var messageChecks = [
-    ['WHO IS THE BEST WRESTLER EVER?', 'muscle', 'Not to front, it was Rehmat Qadir until he got hurt putting Hulk Hogan in a full nelson. That leaves THE UNDERTAKERS AS THE G.O.A.T. of WWE #Facts'],
-    ['WHAT IS TURNIP SOLUTIONS?', 'turnip', 'Turnip Solutions was established on 4/1/2016 with Brian Bowman as the CEO, Rebecca Ahn as the CTO, Jeff Escalante as the Triple OG, Brandon Romano as the Director of Technology and a turnip named Plebian. Turnip Solutions is the dark side of Carrot Creative, where people drink Kool-aid, work hard and play harder. Please eat more turnips to learn more information, but dont eat Plebian. Thanks.'],
-    [':turnip:', 'turnip', '#TurnipSolutions'],
     ['REAL FRIENDS', 'yeezy', 'HOW MANY OF US ARE REAL FRIENDS? :yeezy:'],
     ['YOU ARE FIRED', 'the_donald', 'You\'re fired! :the_donald:'],
     ['WHO IS BRIAN BOWMAN?', 'gun', 'Did you even have to ask that? He is someone who always keeps it :100:']
@@ -289,19 +257,13 @@ function react (bot, message) {
   }
 
   if (message.text.toUpperCase().indexOf('NAH') > -1) {
-    if (message.user === 'U08GT2AKC' || message.user === 'U09NPAG11') {
-      bot.reply(message, 'http://67.media.tumblr.com/4025b025994a6d2be7814be7ff1b6058/tumblr_n0ntau9Unr1qhcz8uo1_400.gif')
-    }
+    bot.reply(message, 'http://67.media.tumblr.com/4025b025994a6d2be7814be7ff1b6058/tumblr_n0ntau9Unr1qhcz8uo1_400.gif')
   }
   if (message.text.toUpperCase().indexOf('OH SHIT') > -1) {
-    if (message.user === 'U024GG01L' || message.user === 'U09NPAG11' || message.user === 'U09NPMD9D') {
-      bot.reply(message, 'http://i.imgur.com/aMgG2jh.gif')
-    }
+    bot.reply(message, 'http://i.imgur.com/aMgG2jh.gif')
   }
   if (message.text.toUpperCase().indexOf('FIGURE IT OUT') > -1) {
-    if (message.user === 'U024GG01L' || message.user === 'U09NPAG11') {
-      bot.reply(message, 'http://imgur.com/38bP71C.gif')
-    }
+    bot.reply(message, 'http://imgur.com/38bP71C.gif')
   }
 
   var reactionPoints = [
