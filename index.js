@@ -53,8 +53,6 @@ var listenerKeys = [
   new RegExp('\\blol\\b', 'i'),
   new RegExp('\\bfigure it out\\b', 'i'),
   new RegExp('\\b1hunnit\\b', 'i'),
-  new RegExp('\\b311\\b', 'i'),
-  new RegExp('\\b420\\b', 'i'),
   new RegExp('\\b100\\b', 'i'),
   new RegExp('\\bone hundred\\b', 'i'),
   new RegExp('\\bkeep it \\w+\\b', 'i'),
@@ -82,7 +80,6 @@ var listenerKeys = [
   new RegExp('\\bs train\\b', 'i'),
   new RegExp('\\bz train\\b', 'i'),
   new RegExp('\\bsir train\\b', 'i'),
-  new RegExp('\\bget high\\b', 'i'),
   new RegExp('\\bcarrot\\b', 'i'),
   new RegExp('\\bbook\\b', 'i'),
   new RegExp('\\billiterate\\b', 'i'),
@@ -97,32 +94,7 @@ var listenerKeys = [
   new RegExp('\\byou are fired\\b', 'i'),
   new RegExp('\\bfood\\b', 'i'),
   new RegExp('\\boh shit\\b', 'i'),
-  new RegExp('\\bidk\\b', 'i'),
-  'weed',
-  'turnip',
-  '1_train',
-  '2_train',
-  '3_train',
-  '4_train',
-  '5_train',
-  '6_train',
-  '7_train',
-  'a_train',
-  'b_train',
-  'c_train',
-  'd_train',
-  'e_train',
-  'f_train_sucks',
-  'g_train',
-  'j_train',
-  'l_train',
-  'm_train',
-  'n_train',
-  'q_train',
-  'r_train',
-  's_train',
-  'z_train',
-  'sir_train'
+  new RegExp('\\bidk\\b', 'i')
 ]
 
 controller.hears(
@@ -182,77 +154,39 @@ function react (bot, message) {
 
   // checks for both phrase and emoji
   var subwayInfo = [
-    ['1 TRAIN', '1_train', '123'],
-    ['2 TRAIN', '2_train', '123'],
-    ['3 TRAIN', '3_train', '123'],
-    ['4 TRAIN', '4_train', '456'],
-    ['5 TRAIN', '5_train', '456'],
-    ['6 TRAIN', '6_train', '456'],
-    ['7 TRAIN', '7_train', '7'],
-    ['A TRAIN', 'a_train', 'ACE'],
-    ['B TRAIN', 'b_train', 'BDFM'],
-    ['C TRAIN', 'c_train', 'ACE'],
-    ['D TRAIN', 'd_train', 'BDFM'],
-    ['E TRAIN', 'e_train', 'ACE'],
-    ['F TRAIN', 'f_train_sucks', 'BDFM'],
-    ['G TRAIN', 'g_train', 'G'],
-    ['J TRAIN', 'j_train', 'JZ'],
-    ['L TRAIN', 'l_train', 'L'],
-    ['M TRAIN', 'm_train', 'M'],
-    ['N TRAIN', 'n_train', 'NQR'],
-    ['Q TRAIN', 'q_train', 'NQR'],
-    ['R TRAIN', 'r_train', 'NQR'],
-    ['S TRAIN', 's_train', 'S'],
-    ['Z TRAIN', 'z_train', 'JZ'],
-    ['SIR TRAIN', 'sir_train', 'SIR'],
-    ['1_TRAIN', '1_train', '123'],
-    ['2_TRAIN', '2_train', '123'],
-    ['3_TRAIN', '3_train', '123'],
-    ['4_TRAIN', '4_train', '456'],
-    ['5_TRAIN', '5_train', '456'],
-    ['6_TRAIN', '6_train', '456'],
-    ['7_TRAIN', '7_train', '7'],
-    ['A_TRAIN', 'a_train', 'ACE'],
-    ['B_TRAIN', 'b_train', 'BDFM'],
-    ['C_TRAIN', 'c_train', 'ACE'],
-    ['D_TRAIN', 'd_train', 'BDFM'],
-    ['E_TRAIN', 'e_train', 'ACE'],
-    ['F_TRAIN_SUCKS', 'f_train_sucks', 'BDFM'],
-    ['G_TRAIN', 'g_train', 'G'],
-    ['J_TRAIN', 'j_train', 'JZ'],
-    ['L_TRAIN', 'l_train', 'L'],
-    ['M_TRAIN', 'm_train', 'M'],
-    ['N_TRAIN', 'n_train', 'NQR'],
-    ['Q_TRAIN', 'q_train', 'NQR'],
-    ['R_TRAIN', 'r_train', 'NQR'],
-    ['S_TRAIN', 's_train', 'S'],
-    ['Z_TRAIN', 'z_train', 'JZ'],
-    ['S_R TRAIN', 'sir_train', 'SIR']
+    ['1 TRAIN', '123'],
+    ['2 TRAIN', '123'],
+    ['3 TRAIN', '123'],
+    ['4 TRAIN', '456'],
+    ['5 TRAIN', '456'],
+    ['6 TRAIN', '456'],
+    ['7 TRAIN', '7'],
+    ['A TRAIN', 'ACE'],
+    ['B TRAIN', 'BDFM'],
+    ['C TRAIN', 'ACE'],
+    ['D TRAIN', 'BDFM'],
+    ['E TRAIN', 'ACE'],
+    ['F TRAIN', 'BDFM'],
+    ['G TRAIN', 'G'],
+    ['J TRAIN', 'JZ'],
+    ['L TRAIN', 'L'],
+    ['M TRAIN', 'M'],
+    ['N TRAIN', 'NQR'],
+    ['Q TRAIN', 'NQR'],
+    ['R TRAIN', 'NQR'],
+    ['S TRAIN', 'S'],
+    ['Z TRAIN', 'JZ'],
+    ['SIR TRAIN', 'SIR']
   ]
 
   for (var i = 0; i < subwayInfo.length; i++) {
     if (message.text.toUpperCase().indexOf(subwayInfo[i][0]) > -1) {
-      rxn.push(subwayInfo[i][1], 'mta')
-      getTrainStatus(subwayInfo[i][2], function (name, status, text, date, time) {
+      getTrainStatus(subwayInfo[i][1], function (name, status, text, date, time) {
         var filteredText = htmlToText.fromString(text, {
           wordwrap: 130
         })
         bot.reply(message, 'THE MTA SAYS ::: ' + status + ' FOR THE ' + name + '\n' + filteredText + '\n' + date + '\n' + time)
       })
-    }
-  }
-
-  // checks for both phrase and emoji
-  var messageChecks = [
-    ['REAL FRIENDS', 'yeezy', 'HOW MANY OF US ARE REAL FRIENDS? :yeezy:'],
-    ['YOU ARE FIRED', 'the_donald', 'You\'re fired! :the_donald:'],
-    ['WHO IS BRIAN BOWMAN?', 'gun', 'Did you even have to ask that? He is someone who always keeps it :100:']
-  ]
-
-  for (i = 0; i < messageChecks.length; i++) {
-    if (message.text.toUpperCase().indexOf(messageChecks[i][0]) > -1) {
-      rxn.push(messageChecks[i][1])
-      bot.reply(message, messageChecks[i][2])
     }
   }
 
@@ -268,14 +202,8 @@ function react (bot, message) {
 
   var reactionPoints = [
     ['LOL', 'laughing'],
-    ['GET HIGH', 'weed'],
-    ['CARROT', 'carrot'],
-    ['SHAME', 'shame'],
     ['IDK', 'shrug'],
-    ['RUNNING', 'shame'],
     ['SHOTS FIRED', 'running'],
-    ['420', 'weed'],
-    ['311', '311'],
     ['?', 'question']
   ]
 
@@ -287,9 +215,6 @@ function react (bot, message) {
 
   if (message.text.toUpperCase().indexOf('SUCK IT') > -1) {
     rxn.push('eggplant', 'open_mouth')
-  }
-  if (message.text.indexOf(':weed:') > -1) {
-    rxn.push('weed', 'lifted')
   }
   if (message.text.toUpperCase().indexOf('BOOK') > -1) {
     pushBooks()
